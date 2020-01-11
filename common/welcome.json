@@ -1,0 +1,41 @@
+{
+    "id": "undefined",
+    "type": "page",
+    "title": "anonymous",
+    "windowTitle": "Welcome to Semantyca",
+    "payload": {
+        "orgLogo": "/Workspace/img/f.jpg",
+        "about": "<div class=\"tpl-page\">\n    <h2 class=\"page-header\">some about info</h2>\n</div>\n",
+        "orgName": "Semantyca Ltd",
+        "orgWallpaper": "",
+        "orgColor": "#FFFFFF",
+        "serverVersion": "3.3.4",
+        "build": "01.12.2018 24:00",
+        "availableLangs": {
+            "ENG": "English",
+            "RUS": "Русский",
+            "POR": "Português"
+        },
+        "uiThemes": [
+            "azul",
+            "cinzento",
+            "branco",
+            "preto"
+        ],
+        "sessionOf": {
+            "user": {
+                "login": "anonymous",
+                "userName": "anonymous",
+                "authorized": true,
+                "roles": [],
+                "availableModules": [],
+                "activatedModules": [],
+                "defaultLang": "ENG",
+                "status": "REGISTERED",
+                "substitutes": []
+            },
+            "currentLang": "POR:pt",
+            "pageSize": 20
+        }
+    }
+}

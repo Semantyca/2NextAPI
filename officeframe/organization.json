@@ -1,0 +1,17 @@
+{
+    "id": "0000-UUID-0000",
+    "type": "document",
+    "title": "Semantyca",
+    "windowTitle": "Semantyca Ltd",
+    "payload": {
+        "name": "Semantyca",
+        "logo": "semantyca_logo.png",
+        "regDate": "04.12.2018 01:27",
+        "wasRead": true,
+        "locName": {
+            "ENG": "Semantyca", 
+            "RUS": "Семантика",
+            "POR": "Semantyca"
+        } 
+    }
+}
