@@ -1,0 +1,160 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "API Title",
+        "version": "1.0",
+        "description": "This is a basic welcome page.",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "email": "apiteam@semantyca.com"
+        }
+    },
+    "servers": [
+        {
+            "url": "https://api.semantyca.com/v1"
+        }
+    ],
+    "paths": {
+        "/session": {
+            "get": {
+                "description": "get current session context info",
+                "responses": {
+                    "200": {
+                        "description": "it is when session available, even for anonymous session",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Session"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Session": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "windowTitle": {
+                        "type": "string"
+                    },
+                    "payload": {
+                        "$ref": "#/components/schemas/CurrentProfile"
+                    },
+                    "sessionOf": {
+                        "type": "object",
+                        "properties": {
+                            "currentLang": {
+                                "type": "string"
+                            },
+                            "pageSize": {
+                                "type": "number"
+                            },
+                            "user": {                                
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    }
+                }
+            },
+            "CurrentProfile": {
+                "type": "object",
+                "properties": {
+                    "orgName": {
+                        "type": "string"
+                    },
+                    "orgLogo": {
+                        "type": "string"
+                    },
+                    "orgWallpaper": {
+                        "type": "string"
+                    },
+                    "orgColor": {
+                        "type": "string"
+                    },
+                    "about": {
+                        "type": "string"
+                    },
+                    "availableLangs": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "example": {
+                            "en": "Hello!",
+                            "fr": "Bonjour!"
+                        }
+                    },
+                    "uiThemes": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "serverVersion": {
+                        "type": "string"
+                    },
+                    "build": {
+                        "type": "string"
+                    }
+                }
+            },
+            "User": {
+                "type": "object",
+                "properties": {
+                    "login": {
+                        "type": "string"
+                    },
+                    "userName": {
+                        "type": "string"
+                    },
+                    "defaultLang": {
+                        "type": "string"
+                    },
+                    "authorized": {
+                        "type": "boolean"
+                    },
+                    "roles": {},
+                    "availableModules": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "activatedModules": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "UNKNOWN", 
+                            "NOT_VERIFIED", 
+                            "REGISTERED", 
+                            "USER_WAS_DELETED", 
+                            "WAITING_FOR_VERIFYCODE",
+                            "WAITING_FIRST_ENTERING",
+                            "RESET_PASSWORD_NOT_SENT", 
+                            "TEMPORARY", 
+                            "BLOCKED"
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}
