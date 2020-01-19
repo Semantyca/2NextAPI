@@ -1,40 +1,245 @@
 {
-    "id": "undefined",
-    "type": "page",
-    "title": "anonymous",
-    "windowTitle": "Welcome to Semantyca",
-    "payload": {
-        "orgLogo": "/Workspace/img/f.jpg",
-        "about": "<div class=\"tpl-page\">\n    <h2 class=\"page-header\">some about info</h2>\n</div>\n",
-        "orgName": "Semantyca Ltd",
-        "orgWallpaper": "",
-        "orgColor": "#FFFFFF",
-        "serverVersion": "3.3.4",
-        "build": "01.12.2018 24:00",
-        "availableLangs": {
-            "ENG": "English",
-            "RUS": "Русский",
-            "POR": "Português"
-        },
-        "uiThemes": [
-            "azul",
-            "cinzento",
-            "branco",
-            "preto"
-        ],
-        "sessionOf": {
-            "user": {
-                "login": "anonymous",
-                "userName": "anonymous",     
-                "roles": [],
-                "availableModules": [],
-                "activatedModules": [],
-                "defaultLang": "ENG",
-                "status": "REGISTERED",
-                "substitutes": []
-            },
-            "currentLang": "POR:pt",
-            "pageSize": 20
+    "openapi": "3.0.2",
+    "info": {
+        "title": "API Title",
+        "version": "1.0",
+        "description": "This is a basic welcome page.",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "email": "apiteam@semantyca.com"
         }
-    }
+    },
+    "tags": [
+        {
+            "name": "JuKa framework"
+        }
+    ],
+    "servers": [
+        {
+            "url": "https://api.semantyca.com/v1"
+        }
+    ],
+    "paths": {
+        "/session": {
+            "get": {
+                "description": "get current session context info",
+                "responses": {
+                    "200": {
+                        "description": "it is when session available, even for anonymous session",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Session"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        
+                    }
+                }
+            },
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json:": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "login": {
+                                        "type": "string"
+                                    },
+                                    "pwd": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "logged succefully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "redirectURL": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "invalid credentials"
+                    }
+                }
+            },
+            "delete": {
+                "requestBody": {
+                    "content": {
+                        "application/json:": {}
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "logout succefully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "redirectURL": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "logout with a issue"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Session": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "windowTitle": {
+                        "type": "string"
+                    },
+                    "payload": {
+                        "$ref": "#/components/schemas/CurrentProfile"
+                    },
+                    "sessionOf": {
+                        "type": "object",
+                        "properties": {
+                            "currentLang": {
+                                "type": "string"
+                            },
+                            "pageSize": {
+                                "type": "number"
+                            },
+                            "user": {
+                                "$ref": "#/components/schemas/User"
+                            }
+                        }
+                    }
+                }
+            },
+            "CurrentProfile": {
+                "type": "object",
+                "properties": {
+                    "orgName": {
+                        "type": "string"
+                    },
+                    "orgLogo": {
+                        "type": "string"
+                    },
+                    "orgWallpaper": {
+                        "type": "string"
+                    },
+                    "orgColor": {
+                        "type": "string"
+                    },
+                    "about": {
+                        "type": "string"
+                    },
+                    "availableLangs": {
+                        "type": "object",
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "example": {
+                            "en": "Hello!",
+                            "fr": "Bonjour!"
+                        }
+                    },
+                    "uiThemes": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "serverVersion": {
+                        "type": "string"
+                    },
+                    "build": {
+                        "type": "string"
+                    }
+                }
+            },
+            "User": {
+                "type": "object",
+                "properties": {
+                    "login": {
+                        "type": "string"
+                    },
+                    "userName": {
+                        "type": "string"
+                    },
+                    "defaultLang": {
+                        "type": "string"
+                    },
+                    "authorized": {
+                        "type": "boolean"
+                    },
+                    "roles": {},
+                    "availableModules": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "activatedModules": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "UNKNOWN",
+                            "NOT_VERIFIED",
+                            "REGISTERED",
+                            "USER_WAS_DELETED",
+                            "WAITING_FOR_VERIFYCODE",
+                            "WAITING_FIRST_ENTERING",
+                            "RESET_PASSWORD_NOT_SENT",
+                            "TEMPORARY",
+                            "BLOCKED"
+                        ]
+                    }
+                }
+            },
+            "UnauthorizedError": {
+            
+            }
+        },
+        "securitySchemes": {
+            "ApiKeyAuth": {
+                "type": "apiKey",
+                "in": "header",
+                "name": "X-API-KEY"
+            }
+        }
+
+    }    
 }
