@@ -33,6 +33,9 @@
                                 }
                             }
                         }
+                    },
+                    "401": {
+                        
                     }
                 }
             },
@@ -225,6 +228,9 @@
                         ]
                     }
                 }
+            },
+            "UnauthorizedError": {
+            
             }
         },
         "securitySchemes": {

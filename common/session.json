@@ -25,8 +25,7 @@
         "sessionOf": {
             "user": {
                 "login": "anonymous",
-                "userName": "anonymous",
-                "authorized": true,
+                "userName": "anonymous",     
                 "roles": [],
                 "availableModules": [],
                 "activatedModules": [],
