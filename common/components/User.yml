@@ -1,0 +1,35 @@
+User:
+      type: object
+      properties:
+        login:
+          type: string
+        userName:
+          type: string
+        defaultLang:
+          type: string
+        authorized:
+          type: boolean
+        roles:
+          type: array
+          items:
+            type: string
+        availableModules:
+          type: array
+          items:
+            type: string
+        activatedModules:
+          type: array
+          items:
+            type: string
+        status:
+          type: string
+          enum:
+          - UNKNOWN
+          - NOT_VERIFIED
+          - REGISTERED
+          - USER_WAS_DELETED
+          - WAITING_FOR_VERIFYCODE
+          - WAITING_FIRST_ENTERING
+          - RESET_PASSWORD_NOT_SENT
+          - TEMPORARY
+          - BLOCKED

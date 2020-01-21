@@ -1,0 +1,14 @@
+{
+    "type": "object",
+    "properties": {
+        "currentLang": {
+            "type": "string"
+        },
+        "pageSize": {
+            "type": "number"
+        },
+        "user": {
+            "$ref": "./components/User.json"
+        }
+    }
+}

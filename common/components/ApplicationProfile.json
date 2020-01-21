@@ -1,0 +1,38 @@
+{
+    "type": "object",
+    "properties": {
+        "orgName": {
+            "type": "string"
+        },
+        "orgLogo": {
+            "type": "string"
+        },
+        "orgWallpaper": {
+            "type": "string"
+        },
+        "orgColor": {
+            "type": "string"
+        },
+        "about": {
+            "type": "string"
+        },
+        "availableLangs": {
+            "type": "array",            
+            "items": {
+                "$ref": "./components/Language.json"
+            }
+        },
+        "uiThemes": {
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "serverVersion": {
+            "type": "string"
+        },
+        "build": {
+            "type": "string"
+        }
+    }
+}

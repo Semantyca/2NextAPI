@@ -1,0 +1,5 @@
+repositories {
+    jCenter()
+}
+
+compile "io.github.swagger2markup:swagger2markup:1.3.3"

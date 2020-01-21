@@ -1,0 +1,26 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "API Title",
+        "version": "1.0",
+        "description": "This is a officeframe API",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "email": "apiteam@semantyca.com"
+        }
+    },
+    "tags": [
+        {
+            "name": "JuKa framework"
+        }
+    ],
+    "servers": [
+        {
+            "url": "https://api.semantyca.com/v1"
+        }
+    ],
+    "paths": {
+        "/organizations": {
+        }
+    }
+}

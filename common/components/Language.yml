@@ -1,0 +1,7 @@
+Language:
+type: object
+properties:
+  codef:
+    type: string
+  name:
+    type: string

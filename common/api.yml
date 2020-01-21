@@ -1,0 +1,130 @@
+openapi: 3.0.2
+info:
+  title: Common endpoints definitions
+  version: "1.0"
+  description: This is a common endpoints in order to fulfill basic procedures
+  termsOfService: "http://terms.semantyca.com/"
+  contact:
+    email: apiteam@semantyca.com
+tags:
+  - name: JuKa framework
+servers:
+  - url: "https://api.semantyca.com/v1"
+paths:
+  /session:
+    get:
+      description: get current session context info
+      responses:
+        "200":
+          description: "it is when session available, even for anonymous session"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Page"
+        "401":
+          description: unauthorized result
+    post:
+      requestBody:
+        content:
+          "application/json:":
+            schema:
+              type: object
+              properties:
+                login:
+                  type: string
+                pwd:
+                  type: string
+      responses:
+        "200":
+          description: logged succefully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  redirectURL:
+                    type: string
+        "400":
+          description: invalid credentials
+    delete:
+      responses:
+        "200":
+          description: logout succefully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  redirectURL:
+                    type: string
+        "400":
+          description: logout with a issue
+components:
+  schemas:
+    Page:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        title:
+          type: string
+        windowTitle:
+          type: string
+        payload:
+          allOf:
+            - $ref: "#/components/schemas/SessionOf"
+            - $ref: "#/components/schemas/ApplicationProfile"
+    SessionOf:
+      type: object
+      properties:
+        currentLang:
+          type: string
+        pageSize:
+          type: number
+        appUser:
+          $ref: "https://api.semantyca.com/components/User.yml"
+    ApplicationProfile:
+      type: object
+      properties:
+        orgName:
+          type: string
+        orgLogo:
+          type: string
+        orgWallpaper:
+          type: string
+        orgColor:
+          type: string
+        about:
+          type: string
+        availableLangs:
+          type: array
+          items:
+            $ref: "https://api.semantyca.com/components/Language.yml"
+          example:
+            - code: EN
+              name: English
+            - code: PT
+              name: Portuguese
+        uiThemes:
+          type: array
+          items:
+            type: string
+          example:
+            - branco
+            - cinzento
+        serverVersion:
+          type: string
+        build:
+          type: string
+    UnauthorizedError:
+      type: object
+      properties:
+        code:
+          type: string
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
